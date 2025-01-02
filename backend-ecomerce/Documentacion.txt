@@ -1,0 +1,383 @@
+docker-compose up -d
+
+docker exec -it postgres-container psql -U postgres -d mi_base_de_datos
+
+psql -h localhost -p 5440 -U postgres -d mi_base_de_datos
+Luego, puedes verificar las tablas ejecutando:
+
+\dt  -- Esto lista todas las tablas
+
+Metodos de Productos
+1. Autenticarse y Obtener el Token JWT
+Envía una solicitud POST a tu endpoint de autenticación, por ejemplo:
+
+Endpoint: http://localhost:3000/auth/login
+Método: POST
+Headers:
+Content-Type: application/json
+Body:
+{
+  "username": "tu_nombre_de_usuario",
+  "password": "tu_contraseña"
+}
+Este endpoint debería responder con un token JWT si la autenticación es exitosa:
+
+{
+  "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+}
+Copia el valor de access_token para usarlo en las siguientes solicitudes.
+
+2. Crear un Producto (Para Role Vendedor)
+Endpoint: http://localhost:3000/products
+Método: POST
+Headers:
+Content-Type: application/json
+Authorization: Bearer <access_token> (Reemplaza <access_token> con el token obtenido)
+Body:
+{
+  "nombre_producto": "Producto Ejemplo",
+  "descripcion": "Descripción del producto",
+  "precio": 99.99,
+  "fecha_publicacion": "2024-11-13",
+  "imagen": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA...",
+  "cantidad_stock": 10,
+  "id_usuario": 1
+}
+Si la solicitud es exitosa, deberías recibir una respuesta con los detalles del producto creado:
+
+{
+  "id_producto": 1,
+  "nombre_producto": "Producto Ejemplo",
+  "descripcion": "Descripción del producto",
+  "precio": 99.99,
+  "fecha_publicacion": "2024-11-13",
+  "estado": "disponible",
+  "imagen": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA...",
+  "cantidad_stock": 10,
+  "id_usuario": 1
+}
+3. Listar Todos los Productos (Para Cliente o Vendedor)
+Endpoint: http://localhost:3000/products
+Método: GET
+Headers:
+Authorization: Bearer <access_token> (Reemplaza <access_token> con el token obtenido)
+La respuesta debe contener una lista de productos:
+
+[
+  {
+    "id_producto": 1,
+    "nombre_producto": "Producto Ejemplo",
+    "descripcion": "Descripción del producto",
+    "precio": 99.99,
+    "fecha_publicacion": "2024-11-13",
+    "estado": "disponible",
+    "imagen": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA...",
+    "cantidad_stock": 10,
+    "id_usuario": 1
+  }
+]
+4. Actualizar un Producto (Para Role Vendedor)
+Endpoint: http://localhost:3000/products/1 (reemplaza 1 con el ID del producto a actualizar)
+Método: PUT
+Headers:
+Content-Type: application/json
+Authorization: Bearer <access_token>
+Body:
+{
+  "nombre_producto": "Producto Actualizado",
+  "precio": 89.99
+}
+La respuesta debe contener el producto actualizado:
+
+{
+  "id_producto": 1,
+  "nombre_producto": "Producto Actualizado",
+  "descripcion": "Descripción del producto",
+  "precio": 89.99,
+  "fecha_publicacion": "2024-11-13",
+  "estado": "disponible",
+  "imagen": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA...",
+  "cantidad_stock": 10,
+  "id_usuario": 1
+}
+5. Eliminar un Producto (Para Role Vendedor)
+Endpoint: http://localhost:3000/products/1 (reemplaza 1 con el ID del producto a eliminar)
+Método: DELETE
+Headers:
+Authorization: Bearer <access_token>
+Si la eliminación es exitosa, la respuesta debería ser una confirmación, o un código de estado 204 No Content.
+
+Ejemplo de solicitud POST para crear inventario:
+Endpoint: http://localhost:3000/inventory
+Método: POST
+Body:
+{
+  "productId": 1,
+  "availableQuantity": 50
+}
+Ejemplo de solicitud PUT para actualizar inventario:
+Endpoint: http://localhost:3000/inventory/1
+Método: PUT
+Body:
+{
+  "availableQuantity": 45
+}
+Ejemplo de solicitud GET para obtener inventario:
+Endpoint: http://localhost:3000/inventory
+
+ el usuario con rol vendedor puede manejar las publicaciones de sus productos, activando o desactivando según sea necesario.
+Crear Publicación (POST):
+
+Endpoint: POST /publicacion
+Body (JSON):
+{
+  "id_producto": 1,
+  "id_usuario": 1,
+  "estado_publicacion": "activa"
+}
+Actualizar Publicación (PATCH):
+
+Endpoint: PATCH /publicacion/:id
+Body (JSON):
+{
+  "estado_publicacion": "inactiva"
+}
+Obtener Todas las Publicaciones (GET):
+
+Endpoint: GET /publicacion
+Obtener Publicación por ID (GET):
+
+Endpoint: GET /publicacion/:id
+Eliminar Publicación (DELETE):
+
+Endpoint: DELETE /publicacion/:id
+
+
+Configuración en Postman
+Método: POST
+
+URL: http://localhost:3000/mensaje
+
+Encabezados:
+
+Content-Type: application/json
+Si estás usando autenticación (por ejemplo, JWT), agrega:
+Authorization: Bearer <tu_token_de_autenticación>
+Cuerpo de la Solicitud: En el cuerpo, incluye los detalles del mensaje según el DTO CreateMensajeDto y la estructura SQL.
+Debes indicar el id_usuario, id_producto (producto sobre el que el cliente quiere información), el tipo 
+(probablemente como 'mensaje'), y el contenido del mensaje.
+
+{
+  "id_usuario": 1,             // ID del cliente
+  "id_producto": 2,            // ID del producto sobre el que se consulta
+  "tipo": "mensaje",           // Tipo de mensaje
+  "contenido": "Hola, estoy interesado en este producto. ¿Está disponible?" // Contenido del mensaje
+}
+Ejemplo Completo en Postman
+Abrir Postman y seleccionar POST.
+En el campo URL, ingresar http://localhost:3000/mensaje.
+En Headers, agregar Content-Type con el valor application/json. Si tu API utiliza JWT, también incluir Authorization con el token correspondiente.
+En Body, seleccionar la opción raw y luego JSON.
+Pegar el cuerpo JSON de ejemplo.
+Respuesta Esperada
+Si la solicitud es exitosa, el backend debería responder con algo similar a lo siguiente:
+
+{
+  "id_mensaje": 10,
+  "id_usuario": 1,
+  "id_producto": 2,
+  "tipo": "mensaje",
+  "contenido": "Hola, estoy interesado en este producto. ¿Está disponible?",
+  "fecha_envio": "2024-11-13T12:34:56.789Z"
+}
+Esto confirma que el mensaje fue creado correctamente y almacenado en la base de datos.
+
+Si el rol del usuario no es cliente o si no se cumplen otros requisitos, la API debería responder con un error de autorización 
+o validación, dependiendo de la lógica implementada en el backend.
+
+1. Solicitud POST: Crear un mensaje desde el Cliente
+Cliente: Enviando un mensaje para consultar sobre un producto.
+Método: POST
+URL: http://localhost:3000/mensaje
+Body (JSON):
+
+{
+  "id_usuario": 1,            // ID del cliente (suponiendo que el ID de cliente es 1)
+  "id_producto": 101,         // ID del producto (suponiendo que el ID de producto es 101)
+  "tipo": "mensaje",          // Tipo de mensaje, en este caso 'mensaje'
+  "contenido": "Hola, ¿todavía está disponible este producto?" // El contenido del mensaje
+}
+Respuesta esperada:
+{
+  "id_mensaje": 1,
+  "id_usuario": 1,
+  "id_producto": 101,
+  "tipo": "mensaje",
+  "contenido": "Hola, ¿todavía está disponible este producto?",
+  "fechaEnvio": "2024-11-13T12:00:00.000Z"
+}
+2. Solicitud GET: Obtener los mensajes de un producto desde el Vendedor
+Vendedor: Consultando los mensajes enviados por los clientes a sus productos.
+Método: GET
+
+URL: http://localhost:3000/mensaje/101 (Suponiendo que el ID del producto es 101)
+
+Respuesta esperada (en caso de que haya mensajes asociados con este producto):
+
+[
+  {
+    "id_mensaje": 1,
+    "id_usuario": 1,         // ID del cliente que envió el mensaje
+    "id_producto": 101,      // ID del producto
+    "tipo": "mensaje",       // Tipo de mensaje
+    "contenido": "Hola, ¿todavía está disponible este producto?",
+    "fechaEnvio": "2024-11-13T12:00:00.000Z"
+  }
+]
+3. Solicitud GET: Obtener los mensajes enviados por el Cliente
+Vendedor o Admin: Consultando los mensajes enviados por un cliente específico.
+Método: GET
+
+URL: http://localhost:3000/mensaje/cliente/1 (Suponiendo que el ID del cliente es 1)
+
+Respuesta esperada (en caso de que el cliente haya enviado mensajes):
+
+[
+  {
+    "id_mensaje": 1,
+    "id_usuario": 1,         // ID del cliente
+    "id_producto": 101,      // ID del producto al que el cliente envió el mensaje
+    "tipo": "mensaje",       // Tipo de mensaje
+    "contenido": "Hola, ¿todavía está disponible este producto?",
+    "fechaEnvio": "2024-11-13T12:00:00.000Z"
+  }
+]
+4. Respuesta del Vendedor al Cliente (simulada)
+El vendedor puede responder a un mensaje a través de un PUT o PATCH. Aquí te doy un ejemplo de cómo se haría la respuesta:
+
+Vendedor: Respondiendo a un mensaje.
+Método: PATCH
+URL: http://localhost:3000/mensaje/1 (Suponiendo que el ID del mensaje es 1)
+Body (JSON):
+
+{
+  "contenido": "Sí, el producto sigue disponible. ¿Te interesa?"
+}
+Respuesta esperada:
+{
+  "id_mensaje": 1,
+  "id_usuario": 2,         // ID del vendedor que está respondiendo
+  "id_producto": 101,      // ID del producto
+  "tipo": "mensaje",       // Tipo de mensaje
+  "contenido": "Sí, el producto sigue disponible. ¿Te interesa?",
+  "fechaEnvio": "2024-11-13T12:30:00.000Z"
+}
+
+Cliente envía un mensaje:
+
+Método: POST
+URL: http://localhost:3000/mensaje
+Body: JSON con id_usuario, id_producto, tipo y contenido.
+Vendedor consulta los mensajes de un producto:
+
+Método: GET
+URL: http://localhost:3000/mensaje/:id_producto
+Respuesta: Lista de mensajes relacionados con el producto.
+Vendedor consulta los mensajes de un cliente específico:
+
+Método: GET
+URL: http://localhost:3000/mensaje/cliente/:id_usuario
+Respuesta: Lista de mensajes enviados por un cliente.
+Vendedor responde a un mensaje:
+
+Método: PATCH
+URL: http://localhost:3000/mensaje/:id
+Body: JSON con el contenido de la respuesta.
+
+Funcionalidad
+Los clientes y vendedores pueden dejar valoraciones sobre los productos.
+El cliente puede puntuar un producto después de realizar una compra o tras un uso del servicio.
+El vendedor puede también agregar una valoración para un producto.
+Las valoraciones son visibles para todos los usuarios autenticados que consulten el producto.
+Consultas en Postman:
+Crear una valoración:
+
+Método: POST
+URL: http://localhost:3000/reviews
+Body (JSON):
+{
+  "id_usuario": 1,
+  "id_producto": 101,
+  "puntuacion": 4,
+  "comentario": "Buen producto, lo recomiendo"
+}
+Obtener valoraciones de un producto:
+
+Método: GET
+URL: http://localhost:3000/reviews/101
+Actualizar una valoración:
+
+Método: PATCH
+URL: http://localhost:3000/reviews/1
+Body (JSON):
+{
+  "puntuacion": 5,
+  "comentario": "Producto excelente, totalmente recomendable"
+}
+Esto cubrirá la funcionalidad básica de valoraciones para los productos, tanto para clientes como para vendedores.
+POST para Crear una Valoración
+El endpoint que estás utilizando para crear una valoración es un POST, y debe recibir un CreateReviewDto en el cuerpo de la solicitud. Asumiendo que el endpoint es algo como POST /reviews, los datos que deberías enviar desde Postman serían algo así:
+
+1. Configuración de la solicitud en Postman:
+Método: POST
+URL: http://localhost:3000/reviews (asegúrate de que la URL coincida con la configuración de tu servidor)
+2. Cabeceras (Headers):
+Para enviar datos JSON y manejar la autenticación si es necesario:
+
+Content-Type: application/json
+Authorization: Bearer <tu-token> (si estás usando JWT para autenticación, de lo contrario, ajusta según el método de autenticación que estés usando)
+3. Cuerpo (Body):
+Asegúrate de seleccionar raw en el cuerpo y el tipo como JSON. La estructura de los datos que deberías enviar será algo como esto:
+
+{
+  "id_usuario": 1,           // El ID del usuario que está haciendo la valoración
+  "id_producto": 2,          // El ID del producto que está siendo valorado
+  "puntuacion": 4,           // Puntuación de la valoración (por ejemplo, entre 1 y 5)
+  "comentario": "Excelente producto, muy recomendable."  // Comentario adicional
+}
+4. Ejemplo de la solicitud completa en Postman:
+Método: POST
+URL: http://localhost:3000/reviews
+Headers:
+Content-Type: application/json
+Authorization: Bearer <tu-token>
+Body:
+{
+  "id_usuario": 1,
+  "id_producto": 2,
+  "puntuacion": 5,
+  "comentario": "Producto excelente, superó mis expectativas."
+}
+Respuestas esperadas:
+Si la valoración se crea correctamente, recibirás una respuesta con un código 201 Created y un cuerpo similar a esto:
+{
+  "id_valoracion": 1,
+  "id_producto": 2,
+  "id_usuario": 1,
+  "puntuacion": 5,
+  "comentario": "Producto excelente, superó mis expectativas.",
+  "fecha_valoracion": "2024-11-13T00:00:00.000Z"
+}
+Si hay algún error, como un usuario o producto no encontrado, recibirás un código 404 Not Found y un mensaje de error, por ejemplo:
+{
+  "statusCode": 404,
+  "message": "Producto no encontrado"
+}
+Notas:
+Token de Autenticación: Si usas JWT o algún otro tipo de autenticación, asegúrate de incluir el token en las cabeceras. Si no estás usando autenticación, puedes omitir el campo Authorization.
+
+Campos Requeridos: Asegúrate de que los IDs del usuario y producto existan en la base de datos para que la creación de la valoración sea exitosa.
+
+busqueda para productos
+GET
+/products/search?name=producto
