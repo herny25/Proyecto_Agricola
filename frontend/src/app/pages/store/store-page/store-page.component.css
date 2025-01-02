@@ -1,0 +1,701 @@
+/* Estilos globales */
+/* Barra de navegacion */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+/* Barra de navegación */
+.nav-container {
+  background-color: #ffffff;
+  padding: 10px 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Alineación básica entre los elementos */
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex: 1;
+}
+
+.logo {
+  width: 35px;
+  height: 35px;
+  min-width: 35px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Centrado de los enlaces */
+.nav-center {
+  flex: 2;
+  display: flex;
+  justify-content: center; /* Asegura que los enlaces estén centrados */
+}
+
+.nav-links {
+  display: flex;
+  gap: 20px;
+  justify-content: center; /* Centra los enlaces dentro de nav-center */
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #333;
+  font-size: 14px;
+  padding: 8px 15px;
+  width: 80px;
+  text-align: center;
+  font-family: "ADLaM Display", serif;
+  font-weight: 400;
+  font-style: normal;
+  border-bottom: 2px solid transparent;
+  transition: border-bottom 0.3s ease;
+}
+
+.nav-links a.active {
+  border-bottom: 2px solid #34a853;
+}
+
+/* Estilo de la barra de búsqueda */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;  /* Reducimos el espacio entre los elementos */
+  flex: 1;
+  justify-content: flex-end;
+}
+
+.nav-right img {
+  width: 20px;
+  height: 20px;
+  fill: #34a853;
+}
+
+/* Contenedor de la barra de búsqueda con la imagen */
+.search-container {
+  position: relative;
+  width: 100%;  /* Hace que el contenedor sea responsivo */
+  max-width: 300px;  /* Limita el tamaño máximo */
+}
+
+.search-bar {
+  width: 100%;  /* Ocupa todo el espacio del contenedor */
+  padding: 8px 15px 8px 35px; /* Ajustamos el padding para la barra */
+  border: 2px solid #34a853;
+  border-radius: 20px;
+  background-color: #ffffff;
+  height: 35px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.search-bar:focus {
+  outline: none;
+  border-color: #2e7d32;
+  box-shadow: 0 6px 12px rgba(46, 125, 50, 0.2);
+}
+
+.search-bar:hover {
+  background-color: #ffffff;
+}
+
+/* Icono de búsqueda dentro del input */
+.search-icon {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  fill: #34a853;
+}
+
+/* Estilo del contenedor de la barra de búsqueda en el nav */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  justify-content: flex-end;
+}
+
+.user-button {
+  text-decoration: none;
+  background-color: #537052;
+  color: white;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  height: 35px;
+  min-width: 100px;
+  max-width: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.user-icon {
+  width: 10px;
+  height: 10px;
+  background-color: white;
+  border-radius: 50%;
+}
+
+/* Cuerpo */
+
+.main-content {
+  padding: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.store-section {
+  margin-bottom: 40px;
+  padding: 0 20px;
+  height: auto;
+}
+
+.store-title {
+  padding-top: 20px;
+  color: #537052;
+  font-size: 1.8rem;
+  margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: "ADLaM Display", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.store-title svg{
+  width: 50px;
+  height: 50px;
+  color: #537052;
+}
+
+.store-title img {
+  width: 24px;
+  height: 24px;
+}
+
+.products-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px; /* Espaciado constante entre las tarjetas */
+  padding: 16px; /* Espaciado interno del contenedor */
+  justify-content: left; /* Centrar las tarjetas horizontalmente */
+
+}
+
+.product-card {
+  width: 300px;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.product-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.product-content {
+  padding: 20px;
+}
+
+.product-title {
+  color: #333;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.product-description {
+  color: #666;
+  font-size: 0.9rem;
+  margin-bottom: 15px;
+}
+
+.product-button {
+  background-color: #537052;
+  color: white;
+  padding: 8px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  width: 100px;
+  margin: 4px;
+}
+
+.product-button:hover {
+  background-color: #456044;
+}
+
+.footer-container {
+  background-color: #537052;
+  color: #fff;
+  padding: 20px 40px;
+  font-family: 'ADLaM Display', sans-serif;
+}
+
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 20px;
+}
+
+.footer-logo img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.footer-logo p {
+  margin: 10px 0 0;
+  font-size: 14px;
+}
+
+.footer-links h4,
+.footer-contact h4 {
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links li {
+  margin-bottom: 8px;
+}
+
+.footer-links a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
+.footer-contact p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.footer-bottom p {
+  margin: 5px 0;
+}
+/*Modal vendedor*/
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(255, 255, 255, 0.507);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal.show {
+  display: flex;
+}
+
+.modal-content {
+  position: relative; /* Necesario para posicionar el botón de cierre */
+  background-color: #fff;
+  padding: 0px;
+  border-radius: 8px;
+  text-align: center;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.avatar-container {
+  background-color: #537052; /* Fondo verde */
+  width: 100%; /* Ancho completo */
+  height: 200px; /* Altura ajustada para que cubra el área */
+  top: 0; /* Alineado con la parte superior del modal */
+  left: 0; /* Alineado con la parte izquierda del modal */
+  border-radius: 8px 8px 0 0; /* Solo redondear las esquinas superiores */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-header h2 {
+  margin-top: 10px;
+  color: #537052;
+  font-size: 30px;
+}
+.modal-details {
+  padding-top: 20px;
+}
+
+.whatsapp-button {
+  width: 300px;
+  background-color: #537052;
+  font-size: 20px;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-left: 25%;
+}
+
+.close {
+  position: absolute; /* Permite situar el botón relativo al modal */
+  top: 10px; /* Ajusta según el diseño */
+  right: 10px; /* Ajusta según el diseño */
+  font-size: 40px;
+  color: #333;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+.close:hover {
+  color: red;
+}
+
+.user-avatar {
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  background-color: #fff;
+}
+
+.clickable-username {
+  text-decoration: none;
+  cursor: pointer;
+  color: #019b01; /* Color azul para indicar que es interactivo */
+}
+
+.clickable-username:hover {
+  color: #019b01; /* Color más oscuro al pasar el mouse */
+  text-decoration: underline;
+}
+
+/* Estilos para el modal */
+.modalu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Asegurarse de que el modal esté encima de otros elementos */
+}
+
+.modal-contentu {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
+  position: relative; /* Para colocar la cruz de cierre */
+}
+
+.modal-actionsu button {
+  margin: 10px;
+  padding: 10px 20px;
+  background-color: #34a853;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.modal-actionsu button:hover {
+  background-color: #2c8e44;
+}
+
+/* Estilo para la cruz de cierre */
+.close-buttonu {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  color: #999;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+.close-buttonu:hover {
+  color: #333;
+}
+
+.store-sectionu {
+  margin-bottom: 40px;
+  padding: 0 20px;
+  height: 100%;
+}
+
+.store-titleu {
+  padding-top: 20px;
+  color: #537052;
+  font-size: 1.8rem;
+  margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: "ADLaM Display", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.product-cardu {
+  display: flex; /* Alinea los elementos principales horizontalmente */
+  align-items: center; /* Centra verticalmente */
+  width: 100%;
+  max-width: 600px; /* Ajusta el ancho máximo de la tarjeta */
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  margin: 10px auto; /* Espaciado entre tarjetas */
+}
+
+.product-imageu {
+  width: 40%; /* Ancho de la imagen */
+  height: auto; /* Mantener proporción */
+  object-fit: cover;
+  flex-shrink: 0; /* Evita que la imagen se reduzca al faltar espacio */
+}
+
+.product-contentu {
+  display: flex; /* Usamos flexbox también aquí */
+  flex-direction: column; /* Elementos en columna */
+  padding: 20px;
+  flex: 1; /* Permite que el contenido tome el espacio restante */
+}
+
+.product-titleu {
+  color: #333;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.product-descriptionu {
+  color: #666;
+  font-size: 0.9rem;
+  margin-bottom: 15px;
+}
+
+.product-buttonu {
+  background-color: #537052;
+  color: white;
+  padding: 8px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.product-buttonu:hover {
+  background-color: #456044;
+}
+
+.contact-link {
+  color: white; /* Cambiar el color a blanco */
+  text-decoration: none; /* Eliminar el subrayado */
+}
+
+.contact-link:hover {
+  text-decoration: none; /* Asegurar que el subrayado no aparezca al pasar el mouse */
+}
+
+.edit-button {
+  background-color: #4caf50;
+  width: 100px;
+  margin: 4px;
+}
+
+.delete-button {
+  background-color: #e74c3c;
+  width: 100px;
+  margin: 4px;
+}
+
+.publish-button {
+  background-color: #3498db;
+  width: 100px;
+  margin: 4px;
+}
+
+.average-rating {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 16px;
+  color: #555;
+}
+
+.stars-container {
+  position: relative;
+  width: 100px; /* Ajusta el ancho según el tamaño deseado */
+  height: 20px;
+  overflow: hidden;
+}
+
+.stars-overlay,
+.stars-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  gap: 2px;
+}
+
+.stars-overlay {
+  z-index: 2;
+  background-color: transparent;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.stars-overlay::before,
+.stars-background::before {
+  content: "★★★★★"; /* Genera las estrellas */
+  font-size: 20px;
+  font-family: Arial, sans-serif;
+  color: gold; /* Estrellas amarillas */
+}
+
+.stars-background::before {
+  color: lightgray; /* Estrellas grises (fondo) */
+}
+
+@media (max-width: 480px) {
+  .search-container {
+    width: 40px; /* Reducimos el tamaño del contenedor */
+    height: 40px;
+    position: relative;
+    z-index: 1;
+    border-radius: 50%;
+    background-color: #34a853; /* Fondo verde para resaltar */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .search-bar {
+    display: none; /* Ocultamos la barra de búsqueda */
+  }
+
+  .search-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 24px; /* Ajustamos el tamaño del ícono */
+    height: 24px;
+    cursor: pointer;
+  }
+
+  .search-container.expanded {
+    width: 100%; /* Ocupa todo el ancho */
+    height: auto;
+    background-color: #ffffff;
+    border-radius: 0; /* Sin bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    top: 14px;
+    left:50px;
+    z-index: 100; /* Asegurarse de que esté sobre otros elementos */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .search-bar {
+    display: block;
+    width: 90%; /* Ocupa casi todo el ancho disponible */
+    padding: 8px 15px;
+    border: 2px solid #34a853;
+    border-radius: 20px;
+    background-color: #ffffff;
+    height: 35px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    z-index: 101;
+  }
+
+  .search-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    cursor: pointer;
+    z-index: 101;
+  }
+
+  .logo{
+    display: none;
+  }
+
+  .user-button {
+    width: 80px;
+    padding: 8px 10px;
+  }
+
+  .user-text {
+    display: none;  /* Ocultar el texto en pantallas pequeñas */
+  }
+
+  /* Ajustar las tarjetas de producto */
+  .product-card {
+    width: 400px; /* Asegurar que las tarjetas no excedan el 100% de su contenedor */
+    margin: 0; /* Eliminar márgenes */
+  }
+
+  .whatsapp-button {
+    width: 200px;
+  }
+}

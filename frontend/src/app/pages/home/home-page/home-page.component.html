@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=ADLaM+Display&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=person"
+    />
+  </head>
+  <body>
+    <!-- Barra de navegacion -->
+    <nav class="nav-container">
+      <div class="nav-left">
+        <div class="logo">
+          <img src="assets/imagenes/logo.png" alt="Logo" class="logo-image" />
+        </div>
+      </div>
+      <div class="nav-center">
+        <div class="nav-links">
+          <a routerLinkActive="active" routerLink="/">Inicio</a>
+          <a routerLinkActive="active" routerLink="/store">Tienda</a>
+          <a routerLinkActive="active" routerLink="/help">Ayuda</a>
+        </div>
+      </div>
+      <div class="nav-right">
+        <div class="search-container">
+          <img
+            src="../assets/iconos/search_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.svg"
+            alt="busqueda"
+            class="search-icon"
+            (click)="goToStore()"
+          />
+          <input
+            type="text"
+            class="search-bar"
+            placeholder="Buscar"
+            (click)="goToStore()"
+          />
+        </div>
+        <!-- Botón del perfil -->
+        <a (click)="checkProfile()" class="user-button">
+          <span class="material-symbols-outlined"> person </span>
+          <span class="user-text">{{ user.username || 'Usuario' }}</span>
+        </a>
+
+        <!-- Modal de alerta -->
+        <div class="modal" *ngIf="showModal" (click)="closeModal()">
+          <div class="modal-content" (click)="$event.stopPropagation()">
+            <span class="close-button" (click)="closeModal()">×</span>
+            <h2>Debes estar logueado</h2>
+            <p>Para acceder a tu perfil, debes estar registrado o logueado.</p>
+            <div class="modal-actions">
+              <button (click)="goToLogin()">Iniciar sesión</button>
+              <button (click)="goToRegister()">Registrarse</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Cuerpo de la pagina -->
+    <main class="main-container">
+      <!-- Hero Section -->
+      <section class="hero-section">
+        <div class="hero-content">
+          <h1 class="hero-title">CAMPO CONECTADO</h1>
+          <p class="hero-text">
+            Bienvenido a nuestra plataforma digital integral para la
+            comercialización de productos agrícolas de Tarabuco. Aquí, los
+            productores locales pueden acceder a un espacio donde ofrecer y
+            vender sus productos directamente a los consumidores, eliminando
+            intermediarios y fomentando el comercio justo.
+          </p>
+          <div class="hero-title-img">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              xml:space="preserve"
+              id="Leaf"
+              x="0"
+              y="0"
+              version="1.1"
+              viewBox="0 0 20 20"
+            >
+              <path
+                d="M19.025 3.587c-4.356 2.556-4.044 7.806-7.096 10.175-2.297 1.783-5.538.88-7.412.113 0 0-1.27 1.603-2.181 3.74-.305.717-1.644-.073-1.409-.68C3.905 9.25 14.037 5.416 14.037 5.416s-7.149-.303-11.927 5.94c-.128-1.426-.34-5.284 3.36-7.65 5.016-3.211 14.572-.715 13.555-.119z"
+                fill="#34a853"
+                class="color000000 svgShape"
+              ></path>
+            </svg>
+          </div>
+        </div>
+        <img
+          src="../assets/imagenes/cosecha.jpg"
+          alt="Campo trabajadores"
+          class="hero-image"
+        />
+      </section>
+
+      <!-- Tutorial Section -->
+      <section class="tutorial-section">
+        <img
+          src="../assets/imagenes/planta.jpg"
+          alt="tutorial"
+          class="tutorial-image"
+        />
+        <div class="tutorial-content">
+          <h2 class="tutorial-title">Tutorial como usar la página</h2>
+          <p class="tutorial-description">
+            Aprende a navegar y aprovechar todas las funcionalidades de nuestra
+            plataforma. Desde la publicación de productos agrícolas de Tarabuco
+            hasta la gestión de ventas y la interacción con los compradores.
+            Este tutorial te guiará paso a paso en el proceso para que puedas
+            sacar el máximo provecho de la plataforma.
+          </p>
+          <button class="video-button">VIDEO</button>
+        </div>
+      </section>
+    </main>
+    <footer class="footer-container">
+      <div class="footer-top">
+        <div class="footer-logo">
+          <img src="assets/imagenes/logo.png" alt="Logo Campo Conectado" />
+          <p>Conectando el campo con el mercado</p>
+        </div>
+        <div class="footer-links">
+          <h4>Enlaces útiles</h4>
+          <ul>
+            <li><a routerLink="/">Inicio</a></li>
+            <li><a routerLink="/store">Tienda</a></li>
+            <li><a routerLink="/help">Ayuda</a></li>
+          </ul>
+        </div>
+        <div class="footer-contact">
+          <h4>Contáctanos</h4>
+          <p><a href="mailto:waynawasi7@gmail.com" class="contact-link">Email: waynawasi7&#64;gmail.com</a></p>
+          <p><a href="https://wa.me/59173406396" target="_blank" class="contact-link">Teléfono: +591 73406396</a></p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 Campo Conectado. Todos los derechos reservados.</p>
+        <p>Desarrollado con ❤️ para los productores locales.</p>
+      </div>
+    </footer>
+  </body>
+</html>

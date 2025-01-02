@@ -1,0 +1,65 @@
+<div class="register-container">
+  <div class="image-container">
+    <img
+      src="../assets/imagenes/plantitas.jpg"
+      alt="Register"
+      class="register-image"
+    />
+  </div>
+
+  <div class="register-form">
+    <h1 class="form-title">Registro</h1>
+
+    <div class="form-group">
+      <label for="fullName" class="form-label">Nombre Completo</label>
+      <input id="fullName" [(ngModel)]="user.fullName" name="fullName" type="text" class="form-input" required/>
+    </div>
+
+    <div class="form-group">
+      <label for="username" class="form-label">Nombre de Usuario</label>
+      <input id="username" [(ngModel)]="user.username" name="username" type="text" class="form-input" required/>
+    </div>
+
+    <div class="form-group">
+      <label for="email" class="form-label">Correo electrónico</label>
+      <input id="email" [(ngModel)]="user.email" name="email" type="email" class="form-input" required/>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">Sexo</label>
+      <div class="form-radio-group">
+        <label class="form-radio-label">
+          <input [(ngModel)]="user.sexo" name="sexo" type="radio" value="masculino" class="form-radio-input" required/> Masculino
+        </label>
+        <label class="form-radio-label">
+          <input [(ngModel)]="user.sexo" name="sexo" type="radio" value="femenino" class="form-radio-input" required/> Femenino
+        </label>
+      </div>
+    </div><br>
+
+    <div class="form-group">
+      <label for="municipio" class="form-label">Municipio</label>
+      <select id="municipio" name="municipio" [(ngModel)]="user.municipio" class="form-input" required>
+        <option *ngFor="let municipio of municipios" [value]="municipio">{{ municipio }}</option>
+      </select>
+    </div>
+
+    <div class="form-row">
+      <div class="form-column">
+        <label for="celular" class="form-label">Celular</label>
+        <input id="celular" name="celular" [(ngModel)]="user.celular" type="tel" class="form-input" pattern="[0-9]{10}" required/>
+      </div>
+      <div class="form-column">
+        <label for="birthDate" class="form-label">Fecha Nacimiento</label>
+        <input id="birthDate" name="birthDate" [(ngModel)]="user.birthDate" type="date" class="form-input" required/>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="password" class="form-label">Contraseña</label>
+      <input id="password" name="password" [(ngModel)]="user.password" pattern="^[0-9]{8}$" type="password" class="form-input" required/>
+    </div><br>
+
+    <button class="register-button" (click)="register()">Registrarse</button>
+  </div>
+</div>

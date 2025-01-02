@@ -1,0 +1,690 @@
+/* Estilos globales */
+/* Barra de navegacion */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+/* Barra de navegación */
+.nav-container {
+  background-color: #ffffff;
+  padding: 10px 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Alineación básica entre los elementos */
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex: 1;
+}
+
+.logo {
+  width: 35px;
+  height: 35px;
+  min-width: 35px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Centrado de los enlaces */
+.nav-center {
+  flex: 2;
+  display: flex;
+  justify-content: center; /* Asegura que los enlaces estén centrados */
+}
+
+.nav-links {
+  display: flex;
+  gap: 20px;
+  justify-content: center; /* Centra los enlaces dentro de nav-center */
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #333;
+  font-size: 14px;
+  padding: 8px 15px;
+  width: 80px;
+  text-align: center;
+  font-family: "ADLaM Display", serif;
+  font-weight: 400;
+  font-style: normal;
+  border-bottom: 2px solid transparent;
+  transition: border-bottom 0.3s ease;
+}
+
+.nav-links a.active {
+  border-bottom: 2px solid #34a853;
+}
+
+/* Estilo de la barra de búsqueda */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;  /* Reducimos el espacio entre los elementos */
+  flex: 1;
+  justify-content: flex-end;
+}
+
+.nav-right img {
+  width: 20px;
+  height: 20px;
+  fill: #34a853;
+}
+
+/* Contenedor de la barra de búsqueda con la imagen */
+.search-container {
+  position: relative;
+  width: 100%;  /* Hace que el contenedor sea responsivo */
+  max-width: 300px;  /* Limita el tamaño máximo */
+}
+
+.search-bar {
+  width: 100%;  /* Ocupa todo el espacio del contenedor */
+  padding: 8px 15px 8px 35px; /* Ajustamos el padding para la barra */
+  border: 2px solid #34a853;
+  border-radius: 20px;
+  background-color: #ffffff;
+  height: 35px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.search-bar:focus {
+  outline: none;
+  border-color: #2e7d32;
+  box-shadow: 0 6px 12px rgba(46, 125, 50, 0.2);
+}
+
+.search-bar:hover {
+  background-color: #ffffff;
+}
+
+/* Icono de búsqueda dentro del input */
+.search-icon {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  fill: #34a853;
+}
+
+/* Estilo del contenedor de la barra de búsqueda en el nav */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  justify-content: flex-end;
+}
+
+.user-button {
+  text-decoration: none;
+  background-color: #537052;
+  color: white;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  height: 35px;
+  min-width: 100px;
+  max-width: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.user-icon {
+  width: 10px;
+  height: 10px;
+  background-color: white;
+  border-radius: 50%;
+}
+
+/* Cuerpo de perfil */
+.profile-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.profile-header {
+  margin-bottom: 30px;
+  .icon {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    .header-text {
+      color: #3C7649;
+      font-weight: bold;
+      font-size: 40px;
+    }
+  }
+}
+
+.profile-content {
+  display: flex;
+  gap: 40px;
+}
+
+.profile-image-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  max-width: 220px;
+}
+
+.profile-image-container {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f0f0f0;
+  border: 2px solid #ddd;
+}
+
+.profile-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.change-image-btn {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #537052;
+  border-radius: 15px;
+  background: white;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.delete-image-btn {
+  width: 100%;
+  padding: 8px;
+  border: none;
+  border-radius: 15px;
+  background: #3C7649;
+  color: white;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.change-password-btn {
+  width: 100%;
+  padding: 8px;
+  border: none;
+  border-radius: 15px;
+  background: #ff0000;
+  color: white;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.logout-btn {
+  width: 100%;
+  padding: 8px;
+  border: none;
+  border-radius: 15px;
+  background: #692e2e;
+  color: white;
+  cursor: pointer;
+}
+
+.vertical-divider {
+  width: 1px;
+  align-self: stretch;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    #537052 10%,
+    #537052 90%,
+    transparent
+  );
+  margin: 1rem 0;
+}
+
+.profile-form {
+  flex: 1;
+}
+
+.form-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label{
+  font-weight: bold;
+}
+
+.form-label {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: #374151;
+  margin-bottom: 0.5rem;
+}
+
+.input {
+  width: 100%;
+  height: 45px;
+  padding: 0.75rem 1rem;
+  font-size: 0.95rem;
+  border-radius: 8px;
+  border: 1.5px solid #e5e7eb;
+  background-color: #fff;
+  outline: none;
+  transition: all 0.2s ease-in-out;
+}
+
+.input:hover {
+  border-color: #d1d5db;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.input:focus {
+  border-color: #3C7649;
+  box-shadow: 0 0 0 3px rgba(60, 118, 73, 0.1);
+}
+
+.input::placeholder {
+  color: #9ca3af;
+}
+
+.checkbox-group {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 0.25rem;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.checkbox-input {
+  width: 1.2rem;
+  height: 1.2rem;
+  margin-right: 0.5rem;
+  cursor: pointer;
+}
+
+.checkbox-text {
+  font-size: 0.95rem;
+  color: #4b5563;
+}
+
+.date-input {
+  color: #4b5563;
+}
+
+.form-row {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.half-width {
+  flex: 1;
+}
+
+.gender-options {
+  display: flex;
+  gap: 2rem;
+  padding: 0.5rem 0;
+}
+
+.radio-option {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.radio-input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.radio-label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+.radio-circle {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #d1d5db;
+  border-radius: 50%;
+  margin-right: 0.75rem;
+  transition: all 0.2s ease-in-out;
+}
+
+.radio-circle::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #3C7649;
+  transition: transform 0.2s ease-in-out;
+}
+
+.radio-input:checked + .radio-label .radio-circle {
+  border-color: #3C7649;
+}
+
+.radio-input:checked + .radio-label .radio-circle::after {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.radio-text {
+  font-size: 0.95rem;
+  color: #4b5563;
+}
+
+.date-input-container {
+  position: relative;
+}
+
+.date-input {
+  padding-right: 2.5rem;
+}
+
+.calendar-icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #9ca3af;
+  pointer-events: none;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+}
+
+.average-rating {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 16px;
+  color: #555;
+}
+
+.stars-container {
+  position: relative;
+  width: 100px; /* Ajusta el ancho según el tamaño deseado */
+  height: 20px;
+  overflow: hidden;
+}
+
+.stars-overlay,
+.stars-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  gap: 2px;
+}
+
+.stars-overlay {
+  z-index: 2;
+  background-color: transparent;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.stars-overlay::before,
+.stars-background::before {
+  content: "★★★★★"; /* Genera las estrellas */
+  font-size: 20px;
+  font-family: Arial, sans-serif;
+  color: gold; /* Estrellas amarillas */
+}
+
+.stars-background::before {
+  color: lightgray; /* Estrellas grises (fondo) */
+}
+
+
+@media (max-width: 640px) {
+  .form-row {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .input {
+    max-width: 100%;
+  }
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 4px;
+  background-color: #f3f4f6;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator:hover {
+  background-color: #e5e7eb;
+}
+.form-row {
+  display: flex;
+  gap: 20px;
+}
+
+.half-width {
+  width: 50%;
+}
+
+.button-row {
+  display: flex;
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.edit-btn {
+  padding: 10px 20px;
+  background: #3C7649;
+  color: white;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+.publications-btn {
+  padding: 10px 20px;
+  background: #3C7649;
+  color: white;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+
+  &::after {
+    content: '→';
+  }
+}
+
+.button-row a{
+  text-decoration: none;
+}
+
+@media (max-width: 768px) {
+  .profile-content {
+    flex-direction: column;
+  }
+
+  .form-row {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .half-width {
+    width: 100%;
+  }
+
+  .button-row {
+    flex-direction: column;
+  }
+}
+
+/* Agrega estos estilos CSS */
+.input[readonly] {
+  background-color: #f3f4f6;  /* Color gris claro de fondo */
+  border: 1px solid #d1d5db;  /* Borde gris */
+  color: #6b7280;  /* Color de texto más oscuro */
+  cursor: not-allowed;  /* Cursor que indica que no es interactivo */
+  pointer-events: none; /* Previene cualquier interacción */
+}
+
+.input[readonly]:hover,
+.input[readonly]:focus {
+  border-color: #d1d5db;
+  box-shadow: none;
+  outline: none;
+}
+
+/* Estilos para los radio buttons deshabilitados */
+.radio-input:disabled + .radio-label {
+  cursor: not-allowed;
+}
+
+.radio-input:disabled + .radio-label .radio-circle {
+  background-color: #f3f4f6;
+  border-color: #d1d5db;
+}
+
+.radio-input:checked:disabled + .radio-label .radio-circle::after {
+  background-color: #6b7280;
+}
+
+.radio-input:disabled + .radio-label .radio-text {
+  color: #6b7280;
+}
+
+/* Para la fecha */
+.date-input[readonly]::-webkit-calendar-picker-indicator {
+  display: none; /* Oculta el icono del calendario */
+}
+
+.input-error {
+  border: 2px solid red;
+  background-color: #ffe6e6; /* Fondo de color rosa claro para indicar error */
+}
+
+.input-error:focus {
+  outline: 2px solid red;
+}
+
+@media (max-width: 480px) {
+  .search-container {
+    width: 40px; /* Reducimos el tamaño del contenedor */
+    height: 40px;
+  }
+
+  .search-bar {
+    display: none; /* Ocultamos la barra de búsqueda */
+  }
+
+  .search-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 24px; /* Ajustamos el tamaño del ícono */
+    height: 24px;
+    cursor: pointer;
+  }
+
+  .search-container {
+    border-radius: 50%;
+    background-color: #34a853; /* Fondo verde para resaltar */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .profile-image-section {
+    margin: 0 auto; /* Centra el elemento horizontalmente */
+    width: 90%; /* Ajusta el ancho al 90% del contenedor */
+  }
+
+  .button-row button:first-child {
+    width: 170px;  /* O el valor que necesites */
+  }
+  .button-row{
+    flex-direction: row;
+  }
+
+  .logo{
+    display: none;
+  }
+
+  .user-button {
+    width: 80px;
+    padding: 8px 10px;
+  }
+
+  .user-text {
+    display: none;  /* Ocultar el texto en pantallas pequeñas */
+  }
+
+  .tutorial-image{
+    display: none;
+  }
+
+  .button-row button:first-child {
+    width: 150px;  /* O el valor que necesites */
+  }
+
+
+}

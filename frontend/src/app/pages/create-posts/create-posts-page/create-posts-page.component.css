@@ -1,0 +1,307 @@
+/* Estilos globales */
+/* Barra de navegacion */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+.nav-container {
+  background-color: #ffffff;
+  padding: 10px 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Alineación básica entre los elementos */
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex: 1;
+}
+
+.logo {
+  width: 35px;
+  height: 35px;
+  min-width: 35px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Centrado de los enlaces */
+.nav-center {
+  flex: 2;
+  display: flex;
+  justify-content: center; /* Asegura que los enlaces estén centrados */
+}
+
+.nav-links {
+  display: flex;
+  gap: 20px;
+  justify-content: center; /* Centra los enlaces dentro de nav-center */
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #333;
+  font-size: 14px;
+  padding: 8px 15px;
+  width: 80px;
+  text-align: center;
+  font-family: "ADLaM Display", serif;
+  font-weight: 400;
+  font-style: normal;
+  border-bottom: 2px solid transparent;
+  transition: border-bottom 0.3s ease;
+}
+
+.nav-links a.active {
+  border-bottom: 2px solid #34a853;
+}
+
+/* Estilo de la barra de búsqueda */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;  /* Reducimos el espacio entre los elementos */
+  flex: 1;
+  justify-content: flex-end;
+}
+
+.nav-right img {
+  width: 20px;
+  height: 20px;
+  fill: #34a853;
+}
+
+/* Contenedor de la barra de búsqueda con la imagen */
+.search-container {
+  position: relative;
+  width: 100%;  /* Hace que el contenedor sea responsivo */
+  max-width: 300px;  /* Limita el tamaño máximo */
+}
+
+.search-bar {
+  width: 100%;  /* Ocupa todo el espacio del contenedor */
+  padding: 8px 15px 8px 35px; /* Ajustamos el padding para la barra */
+  border: 2px solid #34a853;
+  border-radius: 20px;
+  background-color: #ffffff;
+  height: 35px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.search-bar:focus {
+  outline: none;
+  border-color: #2e7d32;
+  box-shadow: 0 6px 12px rgba(46, 125, 50, 0.2);
+}
+
+.search-bar:hover {
+  background-color: #ffffff;
+}
+
+/* Icono de búsqueda dentro del input */
+.search-icon {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  fill: #34a853;
+}
+
+/* Estilo del contenedor de la barra de búsqueda en el nav */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  justify-content: flex-end;
+}
+
+.user-button {
+  text-decoration: none;
+  background-color: #537052;
+  color: white;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  height: 35px;
+  min-width: 100px;
+  max-width: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.user-icon {
+  width: 10px;
+  height: 10px;
+  background-color: white;
+  border-radius: 50%;
+}
+
+.create-post-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 20px;
+  gap: 20px; /* Espaciado entre las columnas */
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9; /* Fondo claro */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.section-title {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 20px;
+  color: #4CAF50; /* Color destacado */
+  font-family: Arial, sans-serif;
+}
+
+.create-post-form {
+  display: flex;
+  gap: 20px; /* Espaciado entre la sección de imagen y los detalles */
+  width: 100%;
+  max-width: 800px; /* Limitar el tamaño máximo del formulario */
+}
+
+/* Área de carga de imagen */
+.upload-section {
+  flex: 1; /* Ocupa el 50% del espacio disponible */
+  text-align: center;
+}
+
+.upload-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 300px;
+  border: 2px dashed #ccc;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.upload-area:hover {
+  background-color: #f0f0f0;
+}
+
+.upload-icon {
+  width: 100%;
+  height: auto;
+  max-height: 250px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* Detalles del producto */
+.product-details {
+  flex: 2; /* Ocupa el 50% o más del espacio disponible */
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Espaciado entre los campos */
+}
+
+.product-details label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.product-details input,
+.product-details textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.product-details textarea {
+  resize: none; /* Deshabilita el redimensionado */
+}
+
+.continue-btn {
+  align-self: flex-start;
+  padding: 10px 20px;
+  background-color: #34a853;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.continue-btn:hover {
+  background-color: #2e7d32;
+}
+
+@media (max-width: 768px) {
+  .search-container {
+    width: 40px; /* Reducimos el tamaño del contenedor */
+    height: 40px;
+    border-radius: 50%;
+    background-color: #34a853; /* Fondo verde para resaltar */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .search-bar {
+    display: none; /* Ocultamos la barra de búsqueda */
+  }
+
+  .search-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 24px; /* Ajustamos el tamaño del ícono */
+    height: 24px;
+    cursor: pointer;
+  }
+
+  .logo{
+    display: none;
+  }
+
+  .user-button {
+    width: 80px;
+    padding: 8px 10px;
+  }
+
+  .user-text {
+    display: none;  /* Ocultar el texto en pantallas pequeñas */
+  }
+
+  .create-post-form {
+    flex-direction: column;
+  }
+
+  .upload-icon {
+    width: auto;
+    height: auto;
+  }
+}

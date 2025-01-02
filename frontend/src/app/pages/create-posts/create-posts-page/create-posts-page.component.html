@@ -1,0 +1,133 @@
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=person"
+/>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=ADLaM+Display&display=swap"
+  rel="stylesheet"
+/>
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=person"
+/>
+<!-- Barra de navegacion -->
+<nav class="nav-container">
+  <div class="nav-left">
+    <div class="logo">
+      <img src="assets/imagenes/logo.png" alt="Logo" class="logo-image" />
+    </div>
+  </div>
+  <div class="nav-center">
+    <div class="nav-links">
+      <a routerLinkActive="active" routerLink="/home">Inicio</a>
+      <a routerLinkActive="active" routerLink="/store">Tienda</a>
+      <a routerLinkActive="active" routerLink="/help">Ayuda</a>
+    </div>
+  </div>
+  <div class="nav-right">
+    <div class="search-container">
+      <img
+        src="../assets/iconos/search_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.svg"
+        alt="busqueda"
+        class="search-icon"
+        (click)="goToStore()"
+      />
+      <input
+        type="text"
+        class="search-bar"
+        placeholder="Buscar"
+        (click)="goToStore()"
+      />
+    </div>
+    <a [routerLink]="['/profile']" class="user-button">
+      <span class="material-symbols-outlined"> person </span
+      ><span class="user-text">{{ user.username || 'Usuario' }}</span>
+    </a>
+  </div>
+</nav>
+<h2 class="section-title">Publicar</h2>
+<div class="create-post-container">
+  <form (ngSubmit)="submitProduct()" #productForm="ngForm" class="create-post-form">
+    <!-- Sección de carga de imagen -->
+    <div class="upload-section">
+      <label for="product-image" class="upload-area">
+        <img
+          [src]="previewImage || 'assets/imagenes/añadir_foto.png'"
+          alt="Agregar fotografía"
+          class="upload-icon"
+          id="preview-image"
+        />
+        <span>Agregar fotografía</span>
+      </label>
+      <input
+        type="file"
+        id="product-image"
+        class="input-file"
+        (change)="onFileSelected($event)"
+        accept="image/*"
+        required
+      />
+      <div *ngIf="!previewImage && productForm.submitted" class="error">
+        Por favor, selecciona una imagen.
+      </div>
+    </div>
+
+    <!-- Detalles del producto -->
+    <div class="product-details">
+      <label for="product-name">Nombre del producto</label>
+      <input
+        type="text"
+        id="product-name"
+        name="nombre_producto"
+        placeholder="Ej. Frutas frescas"
+        ngModel
+        required
+        #productName="ngModel"
+      />
+      <div *ngIf="productName.invalid && productName.touched" class="error">
+        El nombre del producto es obligatorio.
+      </div>
+
+      <label for="product-price">Precio</label>
+      <input
+        type="number"
+        id="product-price"
+        name="precio"
+        placeholder="Bs.00.00"
+        ngModel
+        required
+        #productPrice="ngModel"
+      />
+      <div *ngIf="productPrice.invalid && productPrice.touched" class="error">
+        El precio es obligatorio y debe ser un número válido.
+      </div>
+
+      <label for="product-description">Descripción</label>
+      <textarea
+        id="product-description"
+        name="descripcion"
+        rows="3"
+        placeholder="Descripción detallada del producto"
+        ngModel
+        required
+        #productDescription="ngModel"
+      ></textarea>
+      <div
+        *ngIf="productDescription.invalid && productDescription.touched"
+        class="error"
+      >
+        La descripción es obligatoria.
+      </div>
+
+      <button
+        type="submit"
+        class="continue-btn"
+        [disabled]="!productForm.valid"
+      >
+        Publicar
+      </button>
+    </div>
+  </form>
+</div>
