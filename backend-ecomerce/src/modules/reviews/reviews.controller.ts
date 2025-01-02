@@ -48,13 +48,6 @@ export class ReviewsController {
     return this.reviewsService.remove(id_producto);
   }
 
-  @Get('/average-seller/:id_usuario')
-  async getAverageRatingBySeller(@Param('id_usuario') id_usuario: number) {
-    const average =
-      await this.reviewsService.getAverageRatingBySeller(id_usuario);
-    return { average };
-  }
-
   @Delete(':id')
   remove(@Param('id') id: number) {
     return this.reviewsService.remove(id);

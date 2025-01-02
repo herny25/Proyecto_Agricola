@@ -43,7 +43,6 @@ export class ReviewsService {
       producto: product,
       puntuacion,
       comentario,
-      id_vendedor: product.usuario.id,
       fecha_valoracion: new Date(),
     });
 
@@ -85,25 +84,6 @@ export class ReviewsService {
       return 0; // Retornar 0 si no hay reseñas
     }
 
-    const totalScore = reviews.reduce(
-      (sum, review) => sum + review.puntuacion,
-      0,
-    );
-    return totalScore / reviews.length;
-  }
-
-  async getAverageRatingBySeller(userId: number): Promise<number> {
-    // Obtener todas las reseñas donde el vendedor sea el usuario proporcionado
-    const reviews = await this.reviewRepository.find({
-      where: { id_vendedor: userId },
-    });
-
-    // Si no hay reseñas, retornar 0
-    if (reviews.length === 0) {
-      return 0;
-    }
-
-    // Calcular el promedio
     const totalScore = reviews.reduce(
       (sum, review) => sum + review.puntuacion,
       0,

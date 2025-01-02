@@ -22,9 +22,6 @@ export class Review {
   usuario: User;
 
   @Column()
-  id_vendedor: number;
-
-  @Column()
   puntuacion: number;
 
   @Column({ type: 'text', nullable: true })
